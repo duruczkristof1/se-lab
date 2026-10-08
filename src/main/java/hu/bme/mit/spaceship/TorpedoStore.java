@@ -30,7 +30,8 @@ public class TorpedoStore {
   }
 
   public boolean fire(int numberOfTorpedos) {
-    if (numberOfTorpedos < 1 || numberOfTorpedos > this.torpedoCount) {
+    boolean isInvalidNumberOfTorpedos = numberOfTorpedos < 1 || numberOfTorpedos > this.torpedoCount;
+    if (isInvalidNumberOfTorpedos) {
       throw new IllegalArgumentException("numberOfTorpedos");
     }
 
@@ -43,6 +44,7 @@ public class TorpedoStore {
     if (r >= FAILURE_RATE) {
       // successful firing
       this.torpedoCount -= numberOfTorpedos;
+      // Ennél jobban hova formázva
       success = true;
     } else {
       // simulated failure
